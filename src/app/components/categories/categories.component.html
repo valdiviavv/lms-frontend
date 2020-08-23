@@ -33,4 +33,23 @@
 
 <hr>
 
+<div class="container">
+  <h3>Add a new category</h3>
+  <form [formGroup]="newCategory">
+    <div class="alert alert-danger" *ngIf="invalidForm">{{errorMessage}}</div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" required id="category" placeholder="Category name" formControlName="name"
+               type="text">
+        <label for="category">Category name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-dark" (click)="submitCategory()">Add Category</button>
+      </div>
+    </div>
+  </form>
+</div>
+
 

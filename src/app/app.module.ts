@@ -7,9 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CategoriesComponent } from './components/categories/categories.component';
 import {HttpClientModule} from '@angular/common/http';
+import { CoursesComponent } from './components/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,15 @@ import {HttpClientModule} from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

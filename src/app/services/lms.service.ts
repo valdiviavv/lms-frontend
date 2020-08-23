@@ -24,7 +24,14 @@ export class LmsService {
         retry(1),
         catchError(this.handleError)
       );
+  }
 
+  getCourses(): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/courses')
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
   }
 
   getCategory(): Observable<Category> {
@@ -36,13 +43,12 @@ export class LmsService {
   }
 
   createCategory(category): Observable<Category> {
-    return this.http.post<Category>(this.apiURL + "/categories", JSON.stringify(category), this.httpOptions)
+    return this.http.post<Category>(this.apiURL + '/categories', JSON.stringify(category), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
-
 
   handleError(error) {
     let errorMessage = '';

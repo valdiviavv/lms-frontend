@@ -1,0 +1,22 @@
+<h1>courses</h1>
+<div class="container">
+  <div class="row">
+    <button class="btn btn-info" (click)="getCoursesList()">Get Courses</button>
+  </div>
+  <div class="row">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let course of coursesList">
+        <td>{{course.id}}</td>
+        <td>{{course.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
