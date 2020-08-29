@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
-import {Category} from '../models/category.model';
+import {Course} from '../models/course.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LmsService {
+export class CoursesService {
 
-  apiURL = 'http://localhost:8080/lms/v1';
+  apiURL = 'http://localhost:8080/lms/v1/courses';
 
   constructor(private http: HttpClient) {
   }
@@ -18,32 +18,24 @@ export class LmsService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  getCategories(): Observable<Category> {
-    return this.http.get<Category>(this.apiURL + '/categories')
+  getCourses(): Observable<Course> {
+    return this.http.get<Course>(this.apiURL)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getCourses(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/courses')
+  getCourse(id): Observable<Course> {
+    return this.http.get<Course>(this.apiURL + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getCategory(): Observable<Category> {
-    return this.http.get<Category>(this.apiURL + '/categories/CAT001')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
-
-  createCategory(category): Observable<Category> {
-    return this.http.post<Category>(this.apiURL + '/categories', JSON.stringify(category), this.httpOptions)
+  createCourse(course): Observable<Course> {
+    return this.http.post<Course>(this.apiURL, JSON.stringify(course), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -60,5 +52,6 @@ export class LmsService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
 
 }

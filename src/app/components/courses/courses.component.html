@@ -4,7 +4,7 @@
     <button class="btn btn-info" (click)="getCoursesList()">Get Courses</button>
   </div>
   <div class="row">
-    <table>
+    <table class="table table-bordered table-hover">
       <thead>
       <tr>
         <th>ID</th>
@@ -12,11 +12,49 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let course of coursesList">
+      <tr *ngFor="let course of coursesList; let i = index" [class.active]="i == currentIndex"
+          (click)="setActiveCourse(course, i)">
         <td>{{course.id}}</td>
         <td>{{course.name}}</td>
       </tr>
       </tbody>
     </table>
   </div>
+  <div *ngIf="!currentCourse" class="row">
+    <h2>Please select a course. </h2>
+  </div>
+  <div *ngIf="currentCourse" class="row">
+    <div class="container">
+      <div class="card">
+        <h3 class="card-header">Details</h3>
+        <div class="card-body">
+          <div class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{currentCourse.id}}</dd>
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">{{currentCourse.name}}</dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <h3>Add a new course</h3>
+    <form [formGroup]="newCourse" >
+      <div class="alert alert-danger" *ngIf="invalidForm">{{errorMessage}}</div>
+      <div class="form-row">
+        <div class="form-label-group">
+          <input class="form-control" required id="course" placeholder="Course name" formControlName="name" type="text">
+          <label for="course">Course name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <button class="btn btn-dark" (click)="submitCourse()">Add Course</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
 </div>

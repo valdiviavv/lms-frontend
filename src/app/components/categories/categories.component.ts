@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LmsService} from '../../services/lms.service';
+import {CategoriesService} from '../../services/categories.service';
 import {Category} from '../../models/category.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -15,13 +15,17 @@ export class CategoriesComponent implements OnInit {
   newCategory: FormGroup;
   errorMessage = 'Please fill out the form before submitting';
   invalidForm = false;
+  currentCategory = null;
+  currentIndex = -1;
 
-  constructor(private lmsService: LmsService) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit() {
-    this.category = new Category('','');
     this.getCategoriesList();
-    this.getCategoryById();
+    this.categoryForm()
+  }
+
+  categoryForm() {
     this.newCategory = new FormGroup({
       'name': new FormControl('', [Validators.required])
     })
@@ -36,7 +40,7 @@ export class CategoriesComponent implements OnInit {
       this.invalidForm = true;
       console.log('Please fill out the form before submitting!');
     } else {
-      this.lmsService.createCategory(this.newCategory.value).subscribe(
+      this.categoriesService.createCategory(this.newCategory.value).subscribe(
         data => {
           this.newCategory.reset();
           console.log('Your category has been created.');
@@ -51,7 +55,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategoriesList() {
-    this.lmsService.getCategories().subscribe(
+    this.categoriesService.getCategories().subscribe(
       data => {
         this.categoriesList = data;
         console.log(this.categoriesList);
@@ -62,7 +66,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategoryById() {
-    this.lmsService.getCategory().subscribe(
+    this.categoriesService.getCategory().subscribe(
       data => {
         this.category = data;
         console.log(this.category)
@@ -70,6 +74,11 @@ export class CategoriesComponent implements OnInit {
       error => console.error(error),
       () => console.log('category loaded')
     )
+  }
+
+  setActiveCategory(category, index) {
+    this.currentCategory = category;
+    this.currentIndex = index;
   }
 
 
