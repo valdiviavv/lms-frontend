@@ -34,6 +34,14 @@
             <dt class="col-sm-3">Name</dt>
             <dd class="col-sm-9">{{currentCourse.name}}</dd>
           </div>
+          <div class="row">
+            <div class="col-sm-2">
+              <button class="btn btn-outline-success" routerLink="/course-edit/{{currentCourse.id}}">Edit Course</button>
+            </div>
+            <div class="col-sm-2 pl-4">
+              <button class="btn btn-outline-danger" (click)="deleteCourse(currentCourse.id)">Delete Course</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

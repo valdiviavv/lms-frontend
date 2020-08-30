@@ -1,0 +1,17 @@
+<div class="container">
+  <h3>Edit course</h3>
+  <form [formGroup]="editedCourse" >
+    <div class="alert alert-danger" *ngIf="invalidForm">{{errorMessage}}</div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" required id="course" placeholder="Course name" [(ngModel)]="courseDetails.name" formControlName="name" type="text">
+        <label for="course">Course name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-dark" (click)="editCourse(courseDetails.id)">Save Course</button>
+      </div>
+    </div>
+  </form>
+</div>

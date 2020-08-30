@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>Edit category</h3>
+  <form [formGroup]="editedCategory">
+    <div class="alert alert-danger" *ngIf="invalidForm">{{errorMessage}}</div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" required id="category" [(ngModel)]="categoryDetails.name" placeholder="Category name" formControlName="name"
+               type="text">
+        <label for="category">Category name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-dark" (click)="updateCategory(categoryDetails.id)">Save Category</button>
+      </div>
+    </div>
+  </form>
+</div>

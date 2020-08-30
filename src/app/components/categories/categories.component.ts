@@ -11,7 +11,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class CategoriesComponent implements OnInit {
 
   public categoriesList;
-  public category;
+  public categoryDetails;
   newCategory: FormGroup;
   errorMessage = 'Please fill out the form before submitting';
   invalidForm = false;
@@ -65,16 +65,16 @@ export class CategoriesComponent implements OnInit {
     )
   }
 
-  getCategoryById() {
-    this.categoriesService.getCategory().subscribe(
+  deleteCategory(id: string) {
+    this.categoriesService.deleteCategory(id).subscribe(
       data => {
-        this.category = data;
-        console.log(this.category)
+        this.categoryDetails = data;
       },
       error => console.error(error),
-      () => console.log('category loaded')
-    )
+      () => console.log('Category Deleted')
+    );
   }
+
 
   setActiveCategory(category, index) {
     this.currentCategory = category;

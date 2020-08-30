@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
 import {Category} from '../models/category.model';
+import {Course} from '../models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class CategoriesService {
       );
   }
 
-  getCategory(): Observable<Category> {
-    return this.http.get<Category>(this.apiURL + '/CAT001')
+  getCategory(id): Observable<Category> {
+    return this.http.get<Category>(this.apiURL + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -36,6 +37,23 @@ export class CategoriesService {
 
   createCategory(category): Observable<Category> {
     return this.http.post<Category>(this.apiURL, JSON.stringify(category), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+
+  updateCategory(id, category): Observable<Category> {
+    return this.http.put<Category>(this.apiURL + '/' + id, JSON.stringify(category), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteCategory(id): Observable<Category> {
+    return this.http.delete<Category>(this.apiURL + '/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

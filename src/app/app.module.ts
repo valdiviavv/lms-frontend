@@ -11,6 +11,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CategoriesComponent } from './components/categories/categories.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CoursesComponent } from './components/courses/courses.component';
+import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
+import { EditCategoryComponent } from './components/categories/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CoursesComponent } from './components/courses/courses.component';
     LoginComponent,
     LogoutComponent,
     CategoriesComponent,
-    CoursesComponent
+    CoursesComponent,
+    EditCourseComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,

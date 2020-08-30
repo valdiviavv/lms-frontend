@@ -27,7 +27,7 @@ export class CoursesService {
   }
 
   getCourse(id): Observable<Course> {
-    return this.http.get<Course>(this.apiURL + id)
+    return this.http.get<Course>(this.apiURL + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -36,6 +36,22 @@ export class CoursesService {
 
   createCourse(course): Observable<Course> {
     return this.http.post<Course>(this.apiURL, JSON.stringify(course), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  updateCourse(id, course): Observable<Course> {
+    return this.http.put<Course>(this.apiURL + '/' + id, JSON.stringify(course), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteCourse(id) {
+    return this.http.delete<Course>(this.apiURL + '/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

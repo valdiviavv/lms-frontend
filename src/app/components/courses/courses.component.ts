@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CoursesService} from '../../services/courses.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -10,6 +11,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class CoursesComponent implements OnInit {
 
   public coursesList;
+  public coursesDetails;
   currentCourse = null;
   currentIndex = -1;
   newCourse: FormGroup;
@@ -59,6 +61,16 @@ export class CoursesComponent implements OnInit {
       },
       error =>  console.error(error),
       () => console.log('courses loaded')
+    );
+  }
+
+  deleteCourse(id: string) {
+    this.courseService.deleteCourse(id).subscribe(
+      data => {
+        this.coursesDetails = data;
+      },
+      error => console.error(error),
+      () => console.log('Course Deleted')
     );
   }
 
