@@ -7,6 +7,7 @@ import {CategoriesComponent} from './components/categories/categories.component'
 import {CoursesComponent} from './components/courses/courses.component';
 import {EditCourseComponent} from './components/courses/edit-course/edit-course.component';
 import {EditCategoryComponent} from './components/categories/edit-category/edit-category.component';
+import {UsersComponent} from './components/users/users.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'category-edit/:id', component: EditCategoryComponent},
   { path: 'courses', component: CoursesComponent},
   { path: 'course-edit/:id', component: EditCourseComponent},
+  { path: 'users', component: UsersComponent},
   { path: 'logout', component: LogoutComponent}
 ];
 
