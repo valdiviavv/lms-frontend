@@ -26,6 +26,23 @@ export class UsersService {
       );
   }
 
+  updateUser(id, user): Observable<User> {
+    return this.http.put<User>(this.apiURL + '/' + id, JSON.stringify(user), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+
+  deleteUser(id) {
+    return this.http.delete<User>(this.apiURL + '/' + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

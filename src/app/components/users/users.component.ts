@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../services/users.service';
-import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -10,6 +9,7 @@ import {UserService} from '../../services/user.service';
 export class UsersComponent implements OnInit {
 
   public userList;
+  public userDetails;
   currentUser = null;
   currentIndex = -1;
 
@@ -29,6 +29,17 @@ export class UsersComponent implements OnInit {
       () => console.log("Users loaded")
     )
   }
+
+  deleteUser(id: string) {
+    this.userService.deleteUser(id).subscribe(
+      data => {
+        this.userDetails = data;
+      },
+      error => console.error(error),
+      () => console.log('User Deleted')
+    );
+  }
+
 
   setActiveUser(user, index) {
     this.currentUser = user;
