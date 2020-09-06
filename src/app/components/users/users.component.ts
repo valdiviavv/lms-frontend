@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import {UsersService} from '../../services/users.service';
+=======
+import {UserService} from '../../services/user.service';
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-users',
@@ -9,10 +13,15 @@ import {UsersService} from '../../services/users.service';
 export class UsersComponent implements OnInit {
 
   public userList;
+<<<<<<< HEAD
   currentUser = null;
   currentIndex = -1;
 
   constructor(private userService: UsersService) { }
+=======
+
+  constructor(private userService: UserService) { }
+>>>>>>> origin/master
 
   ngOnInit() {
     this.getUsersList();
@@ -29,9 +38,12 @@ export class UsersComponent implements OnInit {
     )
   }
 
+<<<<<<< HEAD
   setActiveUser(user, index) {
     this.currentUser = user;
     this.currentIndex = index;
   }
 
+=======
+>>>>>>> origin/master
 }
