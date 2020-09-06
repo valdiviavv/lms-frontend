@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CoursesComponent } from './components/courses/courses.component';
 import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
 import { EditCategoryComponent } from './components/categories/edit-category/edit-category.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditCategoryComponent } from './components/categories/edit-category/edi
     CategoriesComponent,
     CoursesComponent,
     EditCourseComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
