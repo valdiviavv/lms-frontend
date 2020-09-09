@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
 import {User} from '../models/user.model';
+import { Course } from '../models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ export class UsersService {
 
   getUsers(): Observable<User> {
     return this.http.get<User>(this.apiURL )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getUser(id): Observable<User> {
+    return this.http.get<User>(this.apiURL + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)

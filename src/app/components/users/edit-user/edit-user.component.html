@@ -1,1 +1,34 @@
-<p>edit-user works!</p>
+<h1>Edit user</h1>
+<div class="container">
+  <form [formGroup]="editedUser">
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" [(ngModel)]="userDetails.firstName" required id="firstName" placeholder="First name" formControlName="firstName" type="text">
+        <label for="firstName">First name</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" [(ngModel)]="userDetails.lastName" required id="lastName" placeholder="Last name" formControlName="lastName" type="text">
+        <label for="lastName">Last name</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" [(ngModel)]="userDetails.email" required id="email" placeholder="Email" formControlName="email" type="email">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-label-group">
+        <input class="form-control" [(ngModel)]="userDetails.password" required id="password" placeholder="Password" formControlName="password" type="password">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-outline-success" (click)="editUser(userDetails.id)">Save User</button>
+    </div>
+
+  </form>
+</div>
+
