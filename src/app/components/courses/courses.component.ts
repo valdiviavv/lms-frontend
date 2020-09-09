@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CoursesService} from '../../services/courses.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import { CoursesService } from '../../services/courses.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-courses',
@@ -18,16 +17,17 @@ export class CoursesComponent implements OnInit {
   errorMessage = 'Please fill out the form before submitting';
   invalidForm = false;
 
-  constructor(private courseService: CoursesService) { }
+  constructor(private courseService: CoursesService) {
+  }
 
   ngOnInit() {
-   this.courseForm();
+    this.courseForm();
   }
 
   courseForm() {
     this.newCourse = new FormGroup({
-      'name': new FormControl('',[Validators.required])
-    })
+      'name': new FormControl('', [Validators.required])
+    });
   }
 
   get name() {
@@ -59,7 +59,7 @@ export class CoursesComponent implements OnInit {
         this.coursesList = data;
         console.log(this.coursesList);
       },
-      error =>  console.error(error),
+      error => console.error(error),
       () => console.log('courses loaded')
     );
   }

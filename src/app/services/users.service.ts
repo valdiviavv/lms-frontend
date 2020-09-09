@@ -34,6 +34,14 @@ export class UsersService {
       );
   }
 
+  createUser(user): Observable<User> {
+    return this.http.post<User>(this.apiURL, JSON.stringify(user), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
 
   deleteUser(id) {
     return this.http.delete<User>(this.apiURL + '/' + id, this.httpOptions)

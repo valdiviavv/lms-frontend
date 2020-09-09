@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +14,7 @@ export class UsersComponent implements OnInit {
   currentUser = null;
   currentIndex = -1;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private route: Router) { }
 
   ngOnInit() {
     this.getUsersList();
@@ -34,6 +35,7 @@ export class UsersComponent implements OnInit {
     this.userService.deleteUser(id).subscribe(
       data => {
         this.userDetails = data;
+        this.getUsersList();
       },
       error => console.error(error),
       () => console.log('User Deleted')
